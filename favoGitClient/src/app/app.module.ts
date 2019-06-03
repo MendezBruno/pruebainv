@@ -5,12 +5,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './views/inicio/inicio.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchViewComponent } from './views/search-view/search-view.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent
+    InicioComponent,
+    SearchViewComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
