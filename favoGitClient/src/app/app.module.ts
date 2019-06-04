@@ -7,6 +7,7 @@ import { InicioComponent } from './views/inicio/inicio.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchViewComponent } from './views/search-view/search-view.component';
 import { SearchComponent } from './components/search/search.component';
+import { CardUserComponent } from './components/card-user/card-user.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SearchComponent } from './components/search/search.component';
     AppComponent,
     InicioComponent,
     SearchViewComponent,
-    SearchComponent
+    SearchComponent,
+    CardUserComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class GitDataService {
 
   urlToLoginGithub;
+  hostService = 'http://localhost:5000/';
 
   constructor(private http: HttpClient, private router: Router) {
     this.urlToLoginGithub = 'https://github.com/login/oauth/authorize?client_id=' + environment.client_id + '&scope=respo';
@@ -16,5 +17,11 @@ export class GitDataService {
 
   loginToGitHub() {
     window.location.href = this.urlToLoginGithub;
+  }
+
+  getUsers(name) {
+    this.http.get(this.hostService + 'users/' + 'bruno').subscribe(
+      (res: string) => console.log( JSON.parse(res))
+    );
   }
 }
