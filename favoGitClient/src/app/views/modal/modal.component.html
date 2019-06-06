@@ -1,0 +1,7 @@
+<button class="trigger" (click)="toggleModal()">Click here to trigger the modal!</button>
+    <div class="modal" #modal>
+        <div class="modal-content">
+            <span class="close-button" (click)="toggleModal()" >&times;</span>
+            <app-favorite-list></app-favorite-list>
+        </div>
+    </div>

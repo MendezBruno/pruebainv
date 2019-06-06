@@ -10,6 +10,11 @@ import { SearchComponent } from './components/search/search.component';
 import { CardUserGitHubComponent } from './components/card-user-git-hub/card-user-git-hub.component';
 import { HoverButtonComponent } from './components/hover-button/hover-button.component';
 import {FormsModule} from '@angular/forms';
+import { ProfileViewComponent } from './views/profile-view/profile-view.component';
+import { ModalComponent } from './views/modal/modal.component';
+import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
+import { FloatActionButtonComponent } from './components/float-action-button/float-action-button.component';
+import { TrashButtonComponent } from './components/trash-button/trash-button.component';
 
 
 @NgModule({
@@ -19,7 +24,12 @@ import {FormsModule} from '@angular/forms';
     SearchViewComponent,
     SearchComponent,
     CardUserGitHubComponent,
-    HoverButtonComponent
+    HoverButtonComponent,
+    ProfileViewComponent,
+    ModalComponent,
+    FavoriteListComponent,
+    FloatActionButtonComponent,
+    TrashButtonComponent
   ],
   imports: [
     BrowserModule,

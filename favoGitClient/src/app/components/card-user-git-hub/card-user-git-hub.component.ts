@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserGitHub } from '../../models/userGitHub';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-user-git-hub',
@@ -10,9 +11,16 @@ export class CardUserGitHubComponent implements OnInit {
 
   @Input() userData: UserGitHub;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  goToProfile() {
+    this.router.navigate(['/userProfile']);
+  }
+
+  addFavorite() {
+
+  }
 }

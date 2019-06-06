@@ -8,6 +8,7 @@ import {UserGitHub} from '../models/userGitHub';
 import {UsersDataGitHub} from '../models/usersDataGitHub';
 import {async} from 'rxjs/internal/scheduler/async';
 import {ResponseUsersDataGitHub} from '../models/responseUsersDataGitHub';
+import { UserGitData } from '../models/mockUserData';
 
 @Injectable({
   providedIn: 'root'
@@ -26,14 +27,23 @@ export class GitDataService {
     window.location.href = this.urlToLoginGithub;
   }
 
+  // async getUsers(name): Promise<UserGitHub[]> {
+  //   const result = ( await this.http.get<string>(this.hostService + 'users/' + name).pipe( map( res => JSON.parse(res)  ) ).toPromise() ) as ResponseUsersDataGitHub;
+  //   let listRes: UserGitHub[] = [];
+  //   result.items.forEach( async user => {
+  //     let resp = (await this.getUser(user.login)) as UserGitHub;
+  //     listRes.push(resp);
+  //   });
+  //   return listRes;
+  // }
+
+  // private async getUser(login: string): Promise<any> {
+  //   return this.http.get<string>(this.hostService + 'user/' + login).pipe( map( res => JSON.parse(res)  ) ).toPromise();
+  // }
+
   async getUsers(name): Promise<UserGitHub[]> {
-    const result = ( await this.http.get<string>(this.hostService + 'users/' + name).pipe( map( res => JSON.parse(res)  ) ).toPromise() ) as ResponseUsersDataGitHub;
-    let listRes: UserGitHub[] = [];
-    result.items.forEach( async user => {
-      let resp = (await this.getUser(user.login)) as UserGitHub;
-      listRes.push(resp);
-    });
-    return listRes;
+    let res: UserGitHub[] = new UserGitData().usergit;
+   return Promise.resolve(res);
   }
 
   private async getUser(login: string): Promise<any> {

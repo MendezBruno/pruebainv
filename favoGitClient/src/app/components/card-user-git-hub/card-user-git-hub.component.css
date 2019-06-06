@@ -41,7 +41,7 @@
     }
 
     .upper{
-        width: 25vh;
+        width: 100px;
     }
 
     .upper img{
@@ -95,6 +95,7 @@
 
 .midle-content{
     flex-grow: 4;
+    width: 60vw;
     margin-left: 5px; 
 }
 

@@ -1,0 +1,51 @@
+.icon {
+    background: #eeeeee;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 3.5px;
+    transition: box-shadow .2s ease;
+  }
+  .icon:hover {
+    box-shadow: 0 0 7px rgba(10, 10, 10, 0.3);
+  }
+  
+  .icon:hover .lid, .icon:hover .lidcap {
+    transform: rotate(10deg);
+    margin-bottom: 10.5px;
+  }
+  
+  .lidcap, .lid, .bin {
+    position: absolute;
+  }
+  
+  .lidcap, .lid {
+    border-top-left-radius: 2.8px;
+    border-top-right-radius: 2.8px;
+    background: #111;
+    transition: transform .2s linear, margin .2s linear;
+  }
+  
+  .lidcap {
+    bottom: 30px;
+    left: 17px;
+    height: 5px;
+    width: 8px;
+  }
+  
+  .lid {
+    bottom: 24px;
+    left: 6px;
+    width: 29px;
+    height: 7px;
+  }
+  
+  .bin {
+    bottom: 0;
+    left: 6px;
+    width: 14px;
+    border-top: 26px solid #111;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+  }
+  
