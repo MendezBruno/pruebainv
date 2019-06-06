@@ -1,3 +1,4 @@
-<div class="main-container">
-  <app-search></app-search>
-</div>
+<!--<div class="main-container">-->
+  <app-search (searchQuery)="findByUserName($event)"></app-search>
+  <app-card-user-git-hub *ngFor="let user  of userObs" [userData]="user" ></app-card-user-git-hub>
+<!--</div>-->

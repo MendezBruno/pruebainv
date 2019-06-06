@@ -34,9 +34,15 @@ def callbackGitHub():
 
 @app.route("/users/<username>")
 def getUser(username):
-    #requests.get('https://httpbin.org/get', auth=TokenAuth('12345abcde-token'))
     r = requests.get('https://api.github.com/search/users',
-    params={'q': username},
+    params={'q': username + 'in:login'},
+    auth=TokenAuth(token))
+    return jsonify(r.text)
+
+@app.route("/user/<username>")
+def getUserByUserName(username):
+    r = requests.get('https://api.github.com/users/' + username,
+    params={'client_id': '8b61f237d4a4396f139f','client_secret': 'd2bc6953c0d841d78f451a2f36824541726ed0f8'},
     auth=TokenAuth(token))
     return jsonify(r.text)
 

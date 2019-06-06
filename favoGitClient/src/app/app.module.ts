@@ -7,7 +7,9 @@ import { InicioComponent } from './views/inicio/inicio.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchViewComponent } from './views/search-view/search-view.component';
 import { SearchComponent } from './components/search/search.component';
-import { CardUserComponent } from './components/card-user/card-user.component';
+import { CardUserGitHubComponent } from './components/card-user-git-hub/card-user-git-hub.component';
+import { HoverButtonComponent } from './components/hover-button/hover-button.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -16,12 +18,14 @@ import { CardUserComponent } from './components/card-user/card-user.component';
     InicioComponent,
     SearchViewComponent,
     SearchComponent,
-    CardUserComponent
+    CardUserGitHubComponent,
+    HoverButtonComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
