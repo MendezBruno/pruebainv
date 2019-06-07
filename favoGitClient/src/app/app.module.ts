@@ -15,6 +15,12 @@ import { ModalComponent } from './views/modal/modal.component';
 import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
 import { FloatActionButtonComponent } from './components/float-action-button/float-action-button.component';
 import { TrashButtonComponent } from './components/trash-button/trash-button.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {userReducer} from '../state/reducers/user.reducer';
 
 
 @NgModule({
@@ -36,6 +42,13 @@ import { TrashButtonComponent } from './components/trash-button/trash-button.com
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    StoreModule.forRoot({
+      user: userReducer,
+      favorite: favoriteReducer
+    }),
+    EffectsModule.forRoot([UsersEffects, AppEffects]),
+    StoreDevtoolsModule.instrument(),
+    StoreModule.forRoot(reducers, { metaReducers })
   ],
   providers: [],
   bootstrap: [AppComponent]
