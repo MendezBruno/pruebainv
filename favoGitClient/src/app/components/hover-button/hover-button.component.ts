@@ -7,8 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HoverButtonComponent implements OnInit {
 
-  @Input() buttonName : string;
-  @Input() disabled: boolean = false;
+  @Input() buttonName: string;
+  @Input() disabled = false;
   @Output() event: EventEmitter<any> = new EventEmitter<any>();
 
   constructor( ) { }
@@ -16,7 +16,7 @@ export class HoverButtonComponent implements OnInit {
   ngOnInit() {  }
 
   eventClick() {
-    this.event.emit(this.buttonName)
+    this.event.emit(this.buttonName);
   }
 
 }
