@@ -5,6 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 token = ""
+client_id = '8b61f237d4a4396f139f'
 
 from requests.auth import AuthBase
 
@@ -23,6 +24,10 @@ class TokenAuth(AuthBase):
 @app.route("/")
 def hello():
     return jsonify({'text': 'Hello World!'})
+
+@app.route("/login")
+def login():
+    return redirect('https://github.com/login/oauth/authorize?client_id=' + client_id + '&scope=respo')
 
 
 @app.route("/user/signin/callback")
