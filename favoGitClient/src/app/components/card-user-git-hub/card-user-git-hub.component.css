@@ -28,7 +28,7 @@
     .card-content{
         display: flex;
         flex-direction: row;
-        height: 30vh;
+        height: 120px;
         margin:0;
         
      }

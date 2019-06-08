@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, redirect, jsonify, request
 from flask_cors import CORS, cross_origin
 import requests
 
@@ -29,7 +29,7 @@ def hello():
 def callbackGitHub():
     global token
     token = request.args['code']
-    return jsonify(request.args)
+    return redirect('http://localhost:4200', code=200, Response=None)
 
 
 @app.route("/users/<username>")
