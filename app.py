@@ -6,6 +6,7 @@ app = Flask(__name__)
 CORS(app)
 token = ""
 client_id = '8b61f237d4a4396f139f'
+listUsers = dict()
 
 from requests.auth import AuthBase
 
@@ -46,10 +47,17 @@ def getUser(username):
 
 @app.route("/user/<username>")
 def getUserByUserName(username):
+    global listUsers
     r = requests.get('https://api.github.com/users/' + username,
     params={'client_id': '8b61f237d4a4396f139f','client_secret': 'd2bc6953c0d841d78f451a2f36824541726ed0f8'},
     auth=TokenAuth(token))
+    listUsers[username] = jsonify(r.text)
     return jsonify(r.text)
+
+@app.route("/localuser/<username>")
+def getLocalUser(username):
+    nonito = listUsers[username]
+    return nonito
 
 
 if __name__ == '__main__':

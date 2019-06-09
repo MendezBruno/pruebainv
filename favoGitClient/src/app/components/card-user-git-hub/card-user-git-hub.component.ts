@@ -17,7 +17,7 @@ export class CardUserGitHubComponent implements OnInit {
   }
 
   goToProfile() {
-    this.router.navigate(['/userProfile']);
+    this.router.navigate(['/userProfile', { user: this.userData.login} ]);
   }
 
   addFavorite() {

@@ -24,7 +24,8 @@ export class GitDataService {
   }
 
   loginToGitHub() {
-    window.location.href = this.urlToLoginGithub;
+    // window.location.href = this.urlToLoginGithub;
+    this.http.get(this.hostService + 'login');
   }
 
   async getUsers(name): Promise<UserGitHub[]> {
@@ -49,4 +50,25 @@ export class GitDataService {
   // private async getUser(login: string): Promise<any> {
   //   return this.http.get<string>(this.hostService + 'user/' + login).pipe( map( res => JSON.parse(res)  ) ).toPromise();
   // }
+
+  // getUsers(name): UserGitHub[] {
+  //   this.http.get<string>(this.hostService + 'users/' + name).pipe( map( res => JSON.parse(res)  ) ).subscribe(
+  //     (result: ResponseUsersDataGitHub ) => {
+  //       const listRes: UserGitHub[] = [];
+  //       result.items.forEach( user => {
+  //         const resp = this.getUser(user.login).subscribe( (res: UserGitHub) => { listRes.push(res); } );
+  //
+  //
+  //       });
+  //       return listRes;
+  //     });
+  //
+  // }
+  //
+  // private getUser(login: string): Observable < UserGitHub > {
+  //   return this.http.get<string>(this.hostService + 'user/' + login).pipe( map( res => JSON.parse(res)  ))
+  // };
+  getLocal(name: string): Observable<any> {
+    return  this.http.get<string>(this.hostService + 'localuser/' + name).pipe( map( res => JSON.parse(res)  ) );
+  }
 }
