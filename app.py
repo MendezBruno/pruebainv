@@ -54,6 +54,14 @@ def getUserByUserName(username):
     listUsers[username] = jsonify(r.text)
     return jsonify(r.text)
 
+@app.route("/repos/<username>")
+def getRepos(username):
+    nonito = listUsers[username].json
+    r = requests.get(nonito.repos_url,
+    params={'client_id': '8b61f237d4a4396f139f','client_secret': 'd2bc6953c0d841d78f451a2f36824541726ed0f8'},
+    auth=TokenAuth(token))
+    return jsonify(r.text)
+
 @app.route("/localuser/<username>")
 def getLocalUser(username):
     nonito = listUsers[username]

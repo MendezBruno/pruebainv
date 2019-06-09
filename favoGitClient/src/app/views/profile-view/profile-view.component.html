@@ -12,18 +12,21 @@
   </div>
   <div class="content">
     <div class="hero" >
-      <img src="/src/assets/img/imagen-no-disponible.jpg" >
+      <img [src]="user.avatar_url" >
       <div class="hero-content" >
         <h1>{{user.login}}</h1>
-        <p> Aca va elgo que escribir sobre el usuario para que el texto no quede solo asi no mas </p>
-        <a href="" class="action-btn">Hire Me</a>
+        <h2 *ngIf="!!user.name"> {{user.name}}</h2>
+        <h2 *ngIf="!!user.email"> {{user.email}}</h2>
+        <h3> Bio </h3>
+        <p *ngIf="!!user.bio"> {{user.bio}} </p>
+        <a (click)="goToGithubPerfil()" class="action-btn">Perfil de Github</a>
       </div>
     </div>
   </div>
   <div class="footer" >
     <footer>
       <ul>
-        <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>3k</p></a> </li>
+        <li> <a href=""> {{repos[0].name}} <p>3k</p></a> </li>
         <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>2k</p></a> </li>
         <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>5k</p></a> </li>
         <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>10k</p></a> </li>

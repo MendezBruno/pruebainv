@@ -71,4 +71,8 @@ export class GitDataService {
   getLocal(name: string): Observable<any> {
     return  this.http.get<string>(this.hostService + 'localuser/' + name).pipe( map( res => JSON.parse(res)  ) );
   }
+
+  getRespo(name: string) {
+    return  this.http.get<string>(this.hostService + 'repos/' + name).pipe( map( res => JSON.parse(res)  ) );
+  }
 }
