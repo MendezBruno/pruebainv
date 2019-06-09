@@ -17,8 +17,4 @@ export class InicioComponent implements OnInit {
     this.githubService.loginToGitHub();
   }
 
-  request() {
-    this.githubService.getUsers('bruno');
-  }
-
 }

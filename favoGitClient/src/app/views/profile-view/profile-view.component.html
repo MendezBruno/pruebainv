@@ -17,19 +17,24 @@
         <h1>{{user.login}}</h1>
         <h2 *ngIf="!!user.name"> {{user.name}}</h2>
         <h2 *ngIf="!!user.email"> {{user.email}}</h2>
-        <h3> Bio </h3>
+        <h3 *ngIf="!!user.bio"> Bio </h3>
         <p *ngIf="!!user.bio"> {{user.bio}} </p>
+        <p *ngIf="!!user.location"> {{user.location}} </p>
         <a (click)="goToGithubPerfil()" class="action-btn">Perfil de Github</a>
+        <a *ngIf="!isFavorite" (click)="addFavorite()" class="action-btn">Agregar a favoritos</a>
+        <a *ngIf="isFavorite" (click)="removeFavorite()" class="action-btn">Eleminar de favoritos</a>
       </div>
     </div>
   </div>
   <div class="footer" >
     <footer>
       <ul>
-        <li> <a href=""> {{repos[0].name}} <p>3k</p></a> </li>
-        <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>2k</p></a> </li>
-        <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>5k</p></a> </li>
-        <li> <a href=""> <!-- ACA VA UNA imagen en svg --> <p>10k</p></a> </li>
+        <li (click)="goToRepo(repo)" *ngFor="let repo  of repos">
+              <a> {{repo.name}}
+                <p>{{repo.stargazers_count}} <i class="material-icons">star</i></p>
+              </a>
+
+        </li>
       </ul>
     </footer>
   </div>   

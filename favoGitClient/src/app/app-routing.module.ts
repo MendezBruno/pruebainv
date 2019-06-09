@@ -8,7 +8,6 @@ import { ProfileViewComponent } from './views/profile-view/profile-view.componen
 const appRoutes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full'},
   { path: 'inicio', component: InicioComponent},
-  { path: 'search', component: SearchViewComponent},
   { path: 'userProfile', component: ProfileViewComponent }
 
 

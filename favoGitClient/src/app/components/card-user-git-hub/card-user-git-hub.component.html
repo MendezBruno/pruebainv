@@ -8,7 +8,8 @@
     </div>
     <div class="action-container">
         <app-hover-button buttonName="Ver Perfil" (event)="goToProfile()"></app-hover-button>
-        <app-hover-button buttonName="Favorito" (event)="addFavorite()"></app-hover-button>
+        <app-hover-button *ngIf="!isFavorite" buttonName="No es favorito" (event)="addFavorite()"></app-hover-button>
+        <app-hover-button *ngIf="isFavorite" buttonName="Es Favorito" (event)="removeFavorite()"></app-hover-button>
     </div>
   </div>
 </div>

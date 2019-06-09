@@ -10,8 +10,8 @@ import {SharedService} from '../../services/shared.service';
 })
 export class SearchComponent implements OnInit {
 
-  // @Output() searchQuery: EventEmitter<string> = new EventEmitter<string>();
-  // query: string;
+  @Output() event: EventEmitter<string> = new EventEmitter<string>();
+  query: string;
 
   private userObs: UserGitHub[] = [];
 
@@ -22,8 +22,9 @@ export class SearchComponent implements OnInit {
   }
 
   onEnterPress(name: any) {
-    // this.searchQuery.emit(query);
+    this.event.emit(name);
     this.gService.getUsers(name).then( ( res: UserGitHub[]) => this.shared.usersNotify(res));
+
   }
 
   // findByUserName(name: string) {

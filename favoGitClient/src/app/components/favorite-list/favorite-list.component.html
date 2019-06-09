@@ -1,19 +1,8 @@
 <ul>
   <h1>Favoritos</h1>
-  <li>
-      <img src="/src/assets/img/imagen-no-disponible.jpg">
-      <p>lorem ipsum lalalalaskafsfa asffasasf</p>
-      <app-trash-button ></app-trash-button>
+  <li *ngFor="let favorite of favorites">
+      <img [src]="favorite.avatar_url">
+      <p>{{favorite.login}}</p>
+      <app-trash-button (evento)="removeFavorite(favorite)" ></app-trash-button>
   </li>
-  <li>
-      <img src="/src/assets/img/imagen-no-disponible.jpg">
-      <p>lorem ipsum lalalalaskafsfa asffasasf</p>
-      <app-trash-button ></app-trash-button>
-    </li>
-    <li>
-        <img src="/src/assets/img/imagen-no-disponible.jpg">
-        <p>lorem ipsum lalalalaskafsfa asffasasf</p>
-        <app-trash-button ></app-trash-button>
-      </li>
-    
 </ul>

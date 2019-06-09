@@ -8,4 +8,14 @@
     background: rgb(238, 56, 56);
     background-size: cover;
     font-family: sans-serif;
-} 
+}
+
+.header-result {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-result i{
+  padding: 20px;
+  cursor: pointer;
+}

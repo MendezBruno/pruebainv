@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UserGitData} from '../../models/mockUserData';
 import {UserGitHub} from '../../models/userGitHub';
 import {GitDataService} from '../../services/git-data.service';
-import {Observable} from 'rxjs';
 import {SharedService} from '../../services/shared.service';
 
 @Component({
@@ -12,17 +10,47 @@ import {SharedService} from '../../services/shared.service';
 })
 export class SearchViewComponent implements OnInit {
 
-  // theUsersData: UserGitHub[] = [];
-  // private userObs: Promise<UserGitHub[]>;
   private userObs: UserGitHub[] = [];
-  constructor(private shared: SharedService) { }
+  private sortFlag = true;
+  private totalFinded = 0;
+  private sortFunction: (a, b) => number;
+  constructor(private shared: SharedService, private gServiceData: GitDataService) { }
 
   ngOnInit() {
-    this.shared.getUsersObserver().subscribe( ( res ) => this.userObs = res );
+    this.shared.getUsersObserver().subscribe( ( res ) => {
+      this.userObs = res.length < 20 ? res : res.splice(0, 20);
+      this.totalFinded = this.gServiceData.getTotalFinded();
+    });
   }
 
-  search(name: string) {
-    // this.userObs = this.gService.getUsers(name);
-    // this.gService.getUsers(name).then( ( res ) => this.userObs = res);
+  sort() {
+    this.sortFunction = this.sortFlag ? this.desc : this.asc;
+    this.sortFlag = !this.sortFlag;
+    this.userObs = this.userObs.sort(this.sortFunction);
   }
+
+  asc(a, b) {
+      if (a.login < b.login ) {
+        return -1;
+      }
+      if (a.login > b.login ) {
+        return 1;
+      }
+      // a debe ser igual b
+      return 0;
+
+  }
+
+  desc(a, b ) {
+    if (a.login > b.login ) {
+      return -1;
+    }
+    if (a.login < b.login ) {
+      return 1;
+    }
+    // a debe ser igual b
+    return 0;
+  }
+
+
 }

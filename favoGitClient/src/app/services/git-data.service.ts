@@ -18,21 +18,24 @@ export class GitDataService {
   urlToLoginGithub;
   hostService = 'http://localhost:5000/';
   gitHubUsersData: UsersDataGitHub[] = [];
+  private result: ResponseUsersDataGitHub;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     this.urlToLoginGithub = 'https://github.com/login/oauth/authorize?client_id=' + environment.client_id + '&scope=respo';
   }
 
   loginToGitHub() {
-    // window.location.href = this.urlToLoginGithub;
-    this.http.get(this.hostService + 'login');
+    window.location.href = this.urlToLoginGithub;
+    // this.http.get(this.hostService + 'login').toPromise()
+    //   .then( res => alert('Logueado' + res) )
+    //   .catch( res => alert('Hubo un problema al loguear: ' + res + ' puede continuar pero los request son limitados') )
   }
 
   async getUsers(name): Promise<UserGitHub[]> {
-    const result = ( await this.http.get<string>(this.hostService + 'users/' + name).pipe( map( res => JSON.parse(res)  ) ).toPromise() ) as ResponseUsersDataGitHub;
-    let listRes: UserGitHub[] = [];
-    result.items.forEach( async user => {
-      let resp = (await this.getUser(user.login)) as UserGitHub;
+    this.result = ( await this.http.get<string>(this.hostService + 'users/' + name).pipe( map( res => JSON.parse(res)  ) ).toPromise() ) as ResponseUsersDataGitHub;
+    const listRes: UserGitHub[] = [];
+    this.result.items.forEach( async user => {
+      const resp = (await this.getUser(user.login)) as UserGitHub;
       listRes.push(resp);
     });
     return listRes;
@@ -40,6 +43,10 @@ export class GitDataService {
 
   private async getUser(login: string): Promise<any> {
     return this.http.get<string>(this.hostService + 'user/' + login).pipe( map( res => JSON.parse(res)  ) ).toPromise();
+  }
+
+  getTotalFinded(): number {
+    return !!this.result ? this.result.total_count : 0;
   }
 
   // async getUsers(name): Promise<UserGitHub[]> {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {GitDataService} from '../../services/git-data.service';
 
 @Component({
   selector: 'app-float-action-button',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FloatActionButtonComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('modal') theModal: any;
+
+  constructor(private githubService: GitDataService) { }
 
   ngOnInit() {
   }
 
+  login() {
+    this.githubService.loginToGitHub();
+  }
+
+  seeModal() {
+    this.theModal.toggleModal();
+  }
 }

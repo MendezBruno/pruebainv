@@ -1,5 +1,15 @@
 
   <app-search></app-search>
-  <div class="main-container">
-    <app-card-user-git-hub *ngFor="let user  of userObs" [userData]="user" ></app-card-user-git-hub>
-  </div>
+  <div *ngIf="totalFinded != 0; then list else nothingToList "></div>
+  <ng-template #list>
+    <div class="main-container">
+      <div class="header-result">
+        <h4>Resultados encontrados: {{totalFinded}} </h4>
+        <i (click)="sort()" class="material-icons">sort</i>
+      </div>
+      <app-card-user-git-hub *ngFor="let user  of userObs" [userData]="user" ></app-card-user-git-hub>
+    </div>
+  </ng-template>
+  <ng-template #nothingToList>
+    <p > No se encontraron resultados </p>
+  </ng-template>

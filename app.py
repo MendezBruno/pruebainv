@@ -1,6 +1,7 @@
 from flask import Flask, redirect, jsonify, request
 from flask_cors import CORS, cross_origin
 import requests
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -32,6 +33,7 @@ def login():
 
 
 @app.route("/user/signin/callback")
+@cross_origin()
 def callbackGitHub():
     global token
     token = request.args['code']
@@ -56,8 +58,8 @@ def getUserByUserName(username):
 
 @app.route("/repos/<username>")
 def getRepos(username):
-    nonito = listUsers[username].json
-    r = requests.get(nonito.repos_url,
+    nonito = json.loads(listUsers[username].json) 
+    r = requests.get(nonito["repos_url"],
     params={'client_id': '8b61f237d4a4396f139f','client_secret': 'd2bc6953c0d841d78f451a2f36824541726ed0f8'},
     auth=TokenAuth(token))
     return jsonify(r.text)
