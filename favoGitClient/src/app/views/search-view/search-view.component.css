@@ -5,9 +5,10 @@
     left: 10%;
     margin: 0;
     padding: 0;
-    background: rgb(238, 56, 56);
+    background: lightslategray;
     background-size: cover;
     font-family: sans-serif;
+    border-radius: 10%;
 }
 
 .header-result {
@@ -18,4 +19,8 @@
 .header-result i{
   padding: 20px;
   cursor: pointer;
+}
+
+.res-label{
+  text-align: center;
 }

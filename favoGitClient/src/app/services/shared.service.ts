@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserGitHub } from '../models/userGitHub';
+import {UsersDataGitHub} from '../models/usersDataGitHub';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ export class SharedService {
   usersObservable$: Observable<UserGitHub[]> = this.observerUsers.asObservable();
 
   private observerFavorite: BehaviorSubject<UserGitHub[]> = new BehaviorSubject<UserGitHub[]>([]);
-  favoriteObservable$: Observable<UserGitHub[]> = this.observerUsers.asObservable();
+  favoriteObservable$: Observable<UserGitHub[]> = this.observerFavorite.asObservable();
+
+  private observerFollowers: BehaviorSubject<UsersDataGitHub[]> = new BehaviorSubject<UsersDataGitHub[]>([]);
+  followersObservable$: Observable<UsersDataGitHub[]> = this.observerFollowers.asObservable();
 
   constructor() { }
 
@@ -24,7 +28,7 @@ export class SharedService {
   }
 
   getFavoritesObserver() {
-    return this.observerFavorite;
+    return this.favoriteObservable$;
   }
 
   favoriteNotify(favoriteNotify: UserGitHub[]) {
@@ -32,5 +36,11 @@ export class SharedService {
   }
 
 
+  getFollowersObserver() {
+    return this.followersObservable$;
+  }
 
+  followersNotify( followers: UsersDataGitHub[] ) {
+    this.observerFollowers.next(followers);
+  }
 }

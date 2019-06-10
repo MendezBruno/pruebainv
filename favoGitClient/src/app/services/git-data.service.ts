@@ -49,37 +49,15 @@ export class GitDataService {
     return !!this.result ? this.result.total_count : 0;
   }
 
-  // async getUsers(name): Promise<UserGitHub[]> {
-  //   let res: UserGitHub[] = new UserGitData().usergit;
-  //  return Promise.resolve(res);
-  // }
-
-  // private async getUser(login: string): Promise<any> {
-  //   return this.http.get<string>(this.hostService + 'user/' + login).pipe( map( res => JSON.parse(res)  ) ).toPromise();
-  // }
-
-  // getUsers(name): UserGitHub[] {
-  //   this.http.get<string>(this.hostService + 'users/' + name).pipe( map( res => JSON.parse(res)  ) ).subscribe(
-  //     (result: ResponseUsersDataGitHub ) => {
-  //       const listRes: UserGitHub[] = [];
-  //       result.items.forEach( user => {
-  //         const resp = this.getUser(user.login).subscribe( (res: UserGitHub) => { listRes.push(res); } );
-  //
-  //
-  //       });
-  //       return listRes;
-  //     });
-  //
-  // }
-  //
-  // private getUser(login: string): Observable < UserGitHub > {
-  //   return this.http.get<string>(this.hostService + 'user/' + login).pipe( map( res => JSON.parse(res)  ))
-  // };
   getLocal(name: string): Observable<any> {
     return  this.http.get<string>(this.hostService + 'localuser/' + name).pipe( map( res => JSON.parse(res)  ) );
   }
 
   getRespo(name: string) {
     return  this.http.get<string>(this.hostService + 'repos/' + name).pipe( map( res => JSON.parse(res)  ) );
+  }
+
+  getLocalfollowers(user: string) {
+    return  this.http.get<string>(this.hostService + 'followers/' + name).pipe( map( res => JSON.parse(res)  ) );
   }
 }

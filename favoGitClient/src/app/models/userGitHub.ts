@@ -2,6 +2,7 @@ export class UserGitHub {
     login: string;
     avatar_url: string;
     html_url: string; // link to github page
+    followers_url: string;
     repos_url: string;
     type: string;
     name: string;

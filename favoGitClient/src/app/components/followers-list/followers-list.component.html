@@ -1,0 +1,7 @@
+<ul>
+  <h1>Seguidores</h1>
+  <li *ngFor="let follower of followers">
+    <img [src]="follower.avatar_url">
+    <p>{{follower.login}}</p>
+  </li>
+</ul>

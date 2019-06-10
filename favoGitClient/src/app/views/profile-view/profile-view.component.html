@@ -3,10 +3,10 @@
   <div class="sidebar">
     <nav>
         <ul>
-          <li><a href="#"> About </a></li>
-          <li><a href="#"> Portfolio </a></li>
-          <li><a href="#"> Blog </a></li>
-          <li><a href="#"> Contact </a></li>
+<!--          <li><a href="#"> About </a></li>  se puede agregar tantos como quieras-->
+          <li *ngIf="!!user.followers_url"><a (click)="seeFollower()"> Seguidores </a></li>
+          <li *ngIf="!!user.blog"><a (click)="linkToBlog()"> Blog </a></li>
+          <li><a (click)="goBack()"> Regresar al inicio </a></li>
         </ul>
     </nav>
   </div>
@@ -39,3 +39,4 @@
     </footer>
   </div>   
 </div>
+<app-modal-followers #modal></app-modal-followers>

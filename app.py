@@ -1,4 +1,4 @@
-from flask import Flask, redirect, jsonify, request
+from flask import Flask, redirect, jsonify, request, send_from_directory
 from flask_cors import CORS, cross_origin
 import requests
 import json
@@ -23,9 +23,14 @@ class TokenAuth(AuthBase):
         return r
 
 
-@app.route("/")
-def hello():
-    return jsonify({'text': 'Hello World!'})
+@app.route('/<path:path>', methods=['GET'])
+def static_proxy(path):
+  return send_from_directory('./dist', path)
+
+
+@app.route('/')
+def root():
+  return send_from_directory('./dist', 'index.html')
 
 @app.route("/login")
 def login():
@@ -37,7 +42,7 @@ def login():
 def callbackGitHub():
     global token
     token = request.args['code']
-    return redirect('http://localhost:4200', code=200, Response=None)
+    return redirect('http://localhost:5000', code=200, Response=None)
 
 
 @app.route("/users/<username>")
@@ -60,6 +65,14 @@ def getUserByUserName(username):
 def getRepos(username):
     nonito = json.loads(listUsers[username].json) 
     r = requests.get(nonito["repos_url"],
+    params={'client_id': '8b61f237d4a4396f139f','client_secret': 'd2bc6953c0d841d78f451a2f36824541726ed0f8'},
+    auth=TokenAuth(token))
+    return jsonify(r.text)
+
+@app.route("/followers/<username>")
+def getFollowers(username):
+    nonito = json.loads(listUsers[username].json) 
+    r = requests.get(nonito["followers_url"],
     params={'client_id': '8b61f237d4a4396f139f','client_secret': 'd2bc6953c0d841d78f451a2f36824541726ed0f8'},
     auth=TokenAuth(token))
     return jsonify(r.text)

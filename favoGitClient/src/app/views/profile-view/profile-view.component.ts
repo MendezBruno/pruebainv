@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserGitHub} from '../../models/userGitHub';
 import {GitDataService} from '../../services/git-data.service';
@@ -12,6 +12,7 @@ import {SharedService} from '../../services/shared.service';
   styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit, OnDestroy {
+  @ViewChild('modal') theModal: any;
   private user: UserGitHub = new UserGitHub();
   private favorites: UserGitHub[] = [];
   private subscripcionUser: Subscription;
@@ -19,6 +20,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   private repos: ReposGitHub[] = [];
   private isFavorite: boolean;
   private subscripcionFavorites: Subscription;
+  private subscripcionFollowers: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   ngOnInit() {
      const user = this.route.snapshot.paramMap.get('user');
      this.subscripcionUser = this.gService.getLocal(user).subscribe( res => this.user = res );
+     this.subscripcionFollowers = this.gService.getLocalfollowers(user).subscribe( res => this.shared.followersNotify(res) );
      this.subscripcionRepos = this.gService.getRespo(user).subscribe( res => this.repos = res );
      this.subscripcionFavorites = this.shared.getFavoritesObserver().subscribe( res => {
        this.favorites = res;
@@ -64,5 +67,17 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   removeFavorite() {
     this.favorites.splice( this.favorites.indexOf(this.user), 1 );
     this.shared.favoriteNotify(this.favorites);
+  }
+
+  linkToBlog() {
+    window.location.href = this.user.blog;
+  }
+
+  seeFollower() {
+      this.theModal.toggleModal();
+  }
+
+  goBack() {
+    this.router.navigate(['/inicio']);
   }
 }

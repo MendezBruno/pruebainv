@@ -1,20 +1,20 @@
 .content {
     grid-area: content;
     /* background: url() */
-    background: lightblue;
+    background: #4e57e6;
 }
 
 .sidebar {
     grid-area: sidebar;
     background: linear-gradient(to right,
-    rgba(249,107,142,1),
-    rgba(218,103,230,1),
-    rgba(130,125,253,1));
+    rgb(180, 162, 148),
+    rgb(182, 172, 174),
+    rgb(126, 152, 182));
     justify-content: center;
 }
 .footer {
     grid-area: footer;
-    background: white;
+    background: #8f8fa8;
 }
 .container {
     font-size: 1.5em;
@@ -113,7 +113,7 @@ footer ul li {
 
 footer ul li a { 
     text-decoration: none;
-    color: #c1c6ce;
+    color: #292e36;
 }
 
 svg {
@@ -142,9 +142,9 @@ footer p {
     .sidebar {
         grid-area: sidebar;
         background: linear-gradient(to right,
-        rgba(249,107,142,1),
-        rgba(218,103,230,1),
-        rgba(130,125,254,1));
+        rgba(180, 162, 148,1),
+        rgba(182, 172, 174,1),
+        rgba(126, 152, 182,1));
         padding-top: 3em;
     }
 

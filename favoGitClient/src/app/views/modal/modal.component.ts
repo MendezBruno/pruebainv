@@ -11,11 +11,11 @@ export class ModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    window.addEventListener("click", this.windowOnClick.bind(this));
+    window.addEventListener('click', this.windowOnClick.bind(this));
   }
 
   toggleModal() {
-        this.theModal.nativeElement.classList.toggle("show-modal");
+        this.theModal.nativeElement.classList.toggle('show-modal');
   }
 
   windowOnClick(event) {
@@ -24,5 +24,5 @@ export class ModalComponent implements OnInit {
         }
   }
 
-    
+
 }

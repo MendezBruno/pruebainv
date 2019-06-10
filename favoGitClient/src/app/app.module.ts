@@ -15,6 +15,8 @@ import { ModalComponent } from './views/modal/modal.component';
 import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
 import { FloatActionButtonComponent } from './components/float-action-button/float-action-button.component';
 import { TrashButtonComponent } from './components/trash-button/trash-button.component';
+import { ModalFollowersComponent } from './views/modal-followers/modal-followers.component';
+import { FollowersListComponent } from './components/followers-list/followers-list.component';
 
 
 
@@ -30,7 +32,9 @@ import { TrashButtonComponent } from './components/trash-button/trash-button.com
     ModalComponent,
     FavoriteListComponent,
     FloatActionButtonComponent,
-    TrashButtonComponent
+    TrashButtonComponent,
+    ModalFollowersComponent,
+    FollowersListComponent
   ],
   imports: [
     BrowserModule,
